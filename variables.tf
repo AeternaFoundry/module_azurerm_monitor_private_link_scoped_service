@@ -46,22 +46,6 @@ EOT
     ])
     error_message = "[from resourcegroups.ValidateName: invalid when len(value) == 0]"
   }
-  validation {
-    condition = alltrue([
-      for k, v in var.monitor_private_link_scoped_services : (
-        length(v.scope_name) >= 1
-      )
-    ])
-    error_message = "[from validate.PrivateLinkScopeName: invalid when len(value) < 1]"
-  }
-  validation {
-    condition = alltrue([
-      for k, v in var.monitor_private_link_scoped_services : (
-        length(v.scope_name) <= 255
-      )
-    ])
-    error_message = "[from validate.PrivateLinkScopeName: invalid when len(value) > 255]"
-  }
-  # Note: 4 additional provider-side validators are enforced at apply time but not mirrored as validation{} blocks here (bespoke or non-mechanically-translatable).
+  # Note: 3 additional provider-side validators are enforced at apply time but not mirrored as validation{} blocks here (bespoke or non-mechanically-translatable).
 }
 
